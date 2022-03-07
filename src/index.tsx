@@ -12,9 +12,10 @@ type Item = {
 type Props = {
   items: Item[]
   onSubmit: (item: Item) => void
+  height?: number
 }
 
-const FilterList = ({ onSubmit, items }: Props) => {
+const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
   const [filter, setFilter] = useState('')
 
   const filteredItems =
@@ -30,22 +31,32 @@ const FilterList = ({ onSubmit, items }: Props) => {
     loop: true,
   })
 
-  useInput((_input, key) => {
-    if (key.upArrow) {
-      decrease()
-    }
+  useInput(
+    (_input, key) => {
+      if (key.upArrow) {
+        decrease()
+      }
 
-    if (key.downArrow) {
-      increase()
-    }
+      if (key.downArrow) {
+        increase()
+      }
 
-    if (key.return) {
-      onSubmit(filteredItems[selectedIndex])
-    }
-  })
+      if (key.return) {
+        onSubmit(filteredItems[selectedIndex])
+      }
+    },
+    {
+      isActive: true,
+    },
+  )
+
+  const itemsToRender = filteredItems.slice(
+    selectedIndex,
+    selectedIndex + height - 1,
+  )
 
   return (
-    <Box height={10} width={50} flexDirection="column">
+    <Box height={height} width={50} flexDirection="column">
       <TextInput
         showCursor={false}
         value={filter}
@@ -55,12 +66,10 @@ const FilterList = ({ onSubmit, items }: Props) => {
           setFilter(newValue)
         }}
       />
-      {filteredItems.map((item, index) => {
+      {itemsToRender.map((item, index) => {
         return (
           <Box key={item.value}>
-            <Text color={index === selectedIndex ? 'blue' : 'white'}>
-              {item.label}
-            </Text>
+            <Text color={index === 0 ? 'blue' : 'white'}>{item.label}</Text>
           </Box>
         )
       })}
@@ -68,32 +77,38 @@ const FilterList = ({ onSubmit, items }: Props) => {
   )
 }
 
-render(
-  <FilterList
-    items={[
-      {
-        label: 'First',
-        value: 'first',
-      },
-      {
-        label: 'Second',
-        value: 'second',
-      },
-      {
-        label: 'Third',
-        value: 'third',
-      },
-      {
-        label: 'Fourth',
-        value: 'fourth',
-      },
-      {
-        label: 'Fifth',
-        value: 'fifth',
-      },
-    ]}
-    onSubmit={(item) => {
-      console.log(item)
-    }}
-  />,
-)
+export default FilterList
+
+// render(
+//   <FilterList
+//     items={[
+//       {
+//         label: 'First',
+//         value: 'first',
+//       },
+//       {
+//         label: 'Second',
+//         value: 'second',
+//       },
+//       {
+//         label: 'Third',
+//         value: 'third',
+//       },
+//       {
+//         label: 'Fourth',
+//         value: 'fourth',
+//       },
+//       {
+//         label: 'Fifth',
+//         value: 'fifth',
+//       },
+//       {
+//         label: 'Sixth',
+//         value: 'sixth',
+//       },
+//     ]}
+//     onSubmit={(item) => {
+//       console.log(item)
+//     }}
+//   />,
+// )
