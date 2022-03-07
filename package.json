@@ -1,0 +1,46 @@
+{
+  "name": "ink-picker",
+  "version": "1.0.0",
+  "description": "Pick or search in a list",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r esbuild-runner/register ./src/index.tsx",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sajmoni/ink-picker.git"
+  },
+  "ava": {
+    "require": [
+      "esbuild-runner/register"
+    ],
+    "extensions": [
+      "tsx"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "all",
+    "singleQuote": true
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sajmoni/ink-picker/issues"
+  },
+  "homepage": "https://github.com/sajmoni/ink-picker#readme",
+  "dependencies": {
+    "ink": "3.2.0",
+    "ink-text-input": "4.0.3",
+    "react": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.39",
+    "esbuild-runner": "2.2.1",
+    "ink-testing-library": "2.1.0",
+    "prettier": "2.5.1",
+    "typescript": "4.6.2"
+  }
+}
