@@ -1,2 +1,2 @@
 # ink-picker
-Pick or search in a list
+Select an item in a filterable list
