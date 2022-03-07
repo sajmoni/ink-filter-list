@@ -1,15 +1,15 @@
 {
-  "name": "ink-picker",
-  "version": "1.0.0",
-  "description": "Pick or search in a list",
-  "main": "index.js",
+  "name": "ink-filter-list",
+  "version": "0.0.1",
+  "description": "Select an item in a filterable list",
+  "main": "dist/index.js",
   "scripts": {
     "start": "node -r esbuild-runner/register ./src/index.tsx",
     "test": "ava"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sajmoni/ink-picker.git"
+    "url": "git+https://github.com/sajmoni/ink-filter-list.git"
   },
   "ava": {
     "require": [
@@ -28,9 +28,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sajmoni/ink-picker/issues"
+    "url": "https://github.com/sajmoni/ink-filter-list/issues"
   },
-  "homepage": "https://github.com/sajmoni/ink-picker#readme",
+  "homepage": "https://github.com/sajmoni/ink-filter-list#readme",
   "dependencies": {
     "ink": "3.2.0",
     "ink-text-input": "4.0.3",

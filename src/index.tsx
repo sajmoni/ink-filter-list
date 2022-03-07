@@ -18,6 +18,8 @@ type Props = {
 const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
   const [filter, setFilter] = useState('')
 
+  // Memoize this
+  // Make it case insensitive
   const filteredItems =
     filter === ''
       ? items
@@ -31,24 +33,19 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
     loop: true,
   })
 
-  useInput(
-    (_input, key) => {
-      if (key.upArrow) {
-        decrease()
-      }
+  useInput((_input, key) => {
+    if (key.upArrow) {
+      decrease()
+    }
 
-      if (key.downArrow) {
-        increase()
-      }
+    if (key.downArrow) {
+      increase()
+    }
 
-      if (key.return) {
-        onSubmit(filteredItems[selectedIndex])
-      }
-    },
-    {
-      isActive: true,
-    },
-  )
+    if (key.return) {
+      onSubmit(filteredItems[selectedIndex])
+    }
+  })
 
   const itemsToRender = filteredItems.slice(
     selectedIndex,
