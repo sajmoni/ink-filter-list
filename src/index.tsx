@@ -47,9 +47,14 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
     }
   })
 
+  /**
+   * If selectedIndex > 0. Show the previous item in the list
+   */
   const itemsToRender = filteredItems.slice(
-    selectedIndex,
-    selectedIndex + height - 1,
+    selectedIndex === 0 ? 0 : selectedIndex - 1,
+    selectedIndex === 0
+      ? selectedIndex + height - 1
+      : selectedIndex + height - 2,
   )
 
   return (
@@ -66,7 +71,15 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
       {itemsToRender.map((item, index) => {
         return (
           <Box key={item.value}>
-            <Text color={index === 0 ? 'blue' : 'white'}>{item.label}</Text>
+            <Text
+              color={
+                filteredItems[selectedIndex].value === item.value
+                  ? 'blue'
+                  : 'white'
+              }
+            >
+              {item.label}
+            </Text>
           </Box>
         )
       })}
@@ -75,37 +88,3 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
 }
 
 export default FilterList
-
-// render(
-//   <FilterList
-//     items={[
-//       {
-//         label: 'First',
-//         value: 'first',
-//       },
-//       {
-//         label: 'Second',
-//         value: 'second',
-//       },
-//       {
-//         label: 'Third',
-//         value: 'third',
-//       },
-//       {
-//         label: 'Fourth',
-//         value: 'fourth',
-//       },
-//       {
-//         label: 'Fifth',
-//         value: 'fifth',
-//       },
-//       {
-//         label: 'Sixth',
-//         value: 'sixth',
-//       },
-//     ]}
-//     onSubmit={(item) => {
-//       console.log(item)
-//     }}
-//   />,
-// )
