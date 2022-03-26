@@ -1,12 +1,13 @@
 {
   "name": "ink-filter-list",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Select an item in a filterable list",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist && tsc",
     "start": "node -r esbuild-runner/register ./src/index.tsx",
     "app": "npm run build && preview && node -r esbuild-runner/register ./app.tsx",
+    "release": "npm run build && np",
     "test": "ava"
   },
   "repository": {
@@ -45,6 +46,7 @@
     "chalk": "4.0.0",
     "esbuild-runner": "2.2.1",
     "ink-testing-library": "2.1.0",
+    "np": "7.6.1",
     "package-preview": "4.0.0",
     "prettier": "2.5.1",
     "strip-ansi": "6.0.0",
