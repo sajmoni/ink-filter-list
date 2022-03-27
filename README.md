@@ -1,3 +1,3 @@
-# ink-picker
+# ink-filter-list
 
-Select an item in a filterable list
+ink component to pick or search in a list
