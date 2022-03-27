@@ -15,7 +15,7 @@ const input = async (write: (data: string) => void, input: string) => {
   write(input)
 }
 
-test('Example test', async (t) => {
+test('Arrow keys and filtering', async (t) => {
   const { lastFrame, stdin } = render(
     <FilterList
       items={[
@@ -40,9 +40,7 @@ test('Example test', async (t) => {
           value: 'fifth',
         },
       ]}
-      onSubmit={(item) => {
-        console.log(item)
-      }}
+      onSubmit={() => {}}
     />,
   )
 
@@ -60,10 +58,32 @@ ${chalk.white('Fourth')}`,
   t.is(
     lastFrame(),
     `${chalk.gray('Type to filter')}
+${chalk.white('First')}
 ${chalk.blue('Second')}
 ${chalk.white('Third')}
+${chalk.white('Fourth')}`,
+  )
+
+  await input(stdin.write, ARROW_DOWN)
+
+  t.is(
+    lastFrame(),
+    `${chalk.gray('Type to filter')}
+${chalk.white('Second')}
+${chalk.blue('Third')}
 ${chalk.white('Fourth')}
 ${chalk.white('Fifth')}`,
+  )
+
+  await input(stdin.write, ARROW_UP)
+
+  t.is(
+    lastFrame(),
+    `${chalk.gray('Type to filter')}
+${chalk.white('First')}
+${chalk.blue('Second')}
+${chalk.white('Third')}
+${chalk.white('Fourth')}`,
   )
 
   await input(stdin.write, 'second')
