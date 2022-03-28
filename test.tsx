@@ -9,6 +9,7 @@ import FilterList from './src'
 
 const ARROW_UP = '\u001B[A'
 const ARROW_DOWN = '\u001B[B'
+const BACKSPACE = '\u007F'
 
 const input = async (write: (data: string) => void, input: string) => {
   await timers.setTimeout(100)
@@ -92,6 +93,25 @@ ${chalk.white('Fourth')}`,
     lastFrame(),
     `${stripAnsi('second')}
 ${chalk.blue('Second')}
+
+
+`,
+  )
+
+  // Clear the input
+  await input(stdin.write, BACKSPACE)
+  await input(stdin.write, BACKSPACE)
+  await input(stdin.write, BACKSPACE)
+  await input(stdin.write, BACKSPACE)
+  await input(stdin.write, BACKSPACE)
+  await input(stdin.write, BACKSPACE)
+
+  await input(stdin.write, 'does not exist')
+
+  t.is(
+    lastFrame(),
+    `${stripAnsi('does not exist')}
+${chalk.italic.gray('No results')}
 
 
 `,

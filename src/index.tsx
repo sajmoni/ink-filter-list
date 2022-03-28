@@ -68,21 +68,27 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
           setFilter(newValue)
         }}
       />
-      {itemsToRender.map((item, index) => {
-        return (
-          <Box key={item.value}>
-            <Text
-              color={
-                filteredItems[selectedIndex].value === item.value
-                  ? 'blue'
-                  : 'white'
-              }
-            >
-              {item.label}
-            </Text>
-          </Box>
-        )
-      })}
+      {itemsToRender.length > 0 ? (
+        itemsToRender.map((item) => {
+          return (
+            <Box key={item.value}>
+              <Text
+                color={
+                  filteredItems[selectedIndex].value === item.value
+                    ? 'blue'
+                    : 'white'
+                }
+              >
+                {item.label}
+              </Text>
+            </Box>
+          )
+        })
+      ) : (
+        <Text color={'gray'} italic>
+          No results
+        </Text>
+      )}
     </Box>
   )
 }
