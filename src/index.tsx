@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Box, Text, useInput } from 'ink'
 import TextInput from 'ink-text-input'
 
@@ -43,7 +43,7 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
     }
 
     if (key.return) {
-      onSubmit(filteredItems[selectedIndex])
+      onSubmit(filteredItems[selectedIndex]!)
     }
   })
 
@@ -74,7 +74,7 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
             <Box key={item.value}>
               <Text
                 color={
-                  filteredItems[selectedIndex].value === item.value
+                  filteredItems[selectedIndex]!.value === item.value
                     ? 'blue'
                     : 'white'
                 }

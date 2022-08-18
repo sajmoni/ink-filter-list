@@ -63,6 +63,7 @@
     "prettier": "2.5.1",
     "react": "17.0.2",
     "strip-ansi": "6.0.0",
+    "tsconfig-one": "0.0.2",
     "typescript": "4.6.2"
   }
 }
