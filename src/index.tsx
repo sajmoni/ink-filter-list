@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Box, Text, useInput } from 'ink'
 import TextInput from 'ink-text-input'
 
-import useNumber from './useNumber'
+import useNumber from './useNumber.js'
 
 type Item = {
   label: string

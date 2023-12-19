@@ -2,7 +2,7 @@
 import { render } from 'ink'
 import React from 'react'
 
-import FilterList from 'ink-filter-list'
+import FilterList from './src/index.jsx'
 
 export const clearConsole = () => {
   process.stdout.write(
@@ -44,8 +44,8 @@ const run = async () => {
           value: 'sixth',
         },
       ]}
-      onSubmit={async ({ value }) => {
-        console.log('value', value)
+      onSubmit={(item) => {
+        console.log('value', item.value)
       }}
     />,
   )

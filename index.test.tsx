@@ -1,11 +1,10 @@
-import timers from 'node:timers/promises'
-import test from 'ava'
 import React from 'react'
 import { render } from 'ink-testing-library'
-import stripAnsi from 'strip-ansi'
-import chalk from 'chalk'
+import { test, expect } from 'vitest'
 
-import FilterList from './src'
+import timers from 'node:timers/promises'
+
+import FilterList from './src/index.jsx'
 
 const ARROW_UP = '\u001B[A'
 const ARROW_DOWN = '\u001B[B'
@@ -16,8 +15,7 @@ const input = async (write: (data: string) => void, input: string) => {
   write(input)
 }
 
-// Tests don't run. Investigate this,
-test.skip('Arrow keys and filtering', async (t) => {
+test('Arrow keys and filtering', async () => {
   const { lastFrame, stdin } = render(
     <FilterList
       items={[
@@ -46,58 +44,23 @@ test.skip('Arrow keys and filtering', async (t) => {
     />,
   )
 
-  t.is(
-    lastFrame(),
-    `${chalk.gray('Type to filter')}
-${chalk.blue('First')}
-${chalk.white('Second')}
-${chalk.white('Third')}
-${chalk.white('Fourth')}`,
-  )
+  expect(lastFrame()).toMatchSnapshot()
 
   await input(stdin.write, ARROW_DOWN)
 
-  t.is(
-    lastFrame(),
-    `${chalk.gray('Type to filter')}
-${chalk.white('First')}
-${chalk.blue('Second')}
-${chalk.white('Third')}
-${chalk.white('Fourth')}`,
-  )
+  expect(lastFrame()).toMatchSnapshot()
 
   await input(stdin.write, ARROW_DOWN)
 
-  t.is(
-    lastFrame(),
-    `${chalk.gray('Type to filter')}
-${chalk.white('Second')}
-${chalk.blue('Third')}
-${chalk.white('Fourth')}
-${chalk.white('Fifth')}`,
-  )
+  expect(lastFrame()).toMatchSnapshot()
 
   await input(stdin.write, ARROW_UP)
 
-  t.is(
-    lastFrame(),
-    `${chalk.gray('Type to filter')}
-${chalk.white('First')}
-${chalk.blue('Second')}
-${chalk.white('Third')}
-${chalk.white('Fourth')}`,
-  )
+  expect(lastFrame()).toMatchSnapshot()
 
   await input(stdin.write, 'second')
 
-  t.is(
-    lastFrame(),
-    `${stripAnsi('second')}
-${chalk.blue('Second')}
-
-
-`,
-  )
+  expect(lastFrame()).toMatchSnapshot()
 
   // Clear the input
   await input(stdin.write, BACKSPACE)
@@ -109,12 +72,5 @@ ${chalk.blue('Second')}
 
   await input(stdin.write, 'does not exist')
 
-  t.is(
-    lastFrame(),
-    `${stripAnsi('does not exist')}
-${chalk.italic.gray('No results')}
-
-
-`,
-  )
+  expect(lastFrame()).toMatchSnapshot()
 })

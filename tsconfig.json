@@ -4,7 +4,11 @@
     "outDir": "dist",
     "declaration": true,
     "incremental": false,
-    "jsx": "react-jsx"
+    // Needed for ink, see: https://github.com/vadimdemedes/ink/pull/553#issuecomment-1464867958
+    "module": "node16",
+    "moduleResolution": "node16",
+    "jsx": "react"
   },
-  "include": ["src"]
+  // TODO: app shouldn't be part of dist
+  "include": ["src", "app.tsx", "index.test.tsx"]
 }
