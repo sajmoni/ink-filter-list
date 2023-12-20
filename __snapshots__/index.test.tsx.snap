@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Arrow keys and filtering 1`] = `
-"[90mType to filter[39m
+"[7mT[27m[2mype to filter[22m
 [34mFirst[39m
 [37mSecond[39m
 [37mThird[39m

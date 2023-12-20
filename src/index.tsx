@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Box, Text, useInput } from 'ink'
-import TextInput from 'ink-text-input'
+import { TextInput } from '@inkjs/ui'
 
 import useNumber from './useNumber.js'
 
@@ -60,8 +60,6 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
   return (
     <Box height={height} width={50} flexDirection="column">
       <TextInput
-        showCursor={false}
-        value={filter}
         placeholder={'Type to filter'}
         onChange={(newValue) => {
           setValue(0)
