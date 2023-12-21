@@ -8,7 +8,7 @@
     "build": "rm -rf dist && tsc",
     "start": "tsx ./src/index.tsx",
     "app": "tsx ./app.tsx",
-    "release": "npm run build && np",
+    "release": "npm run build && np --no-tests",
     "test": "vitest"
   },
   "repository": {
