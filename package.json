@@ -1,6 +1,6 @@
 {
   "name": "ink-filter-list",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "ink component to pick or search in a list",
   "main": "dist/index.js",
   "type": "module",
