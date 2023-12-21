@@ -1,4 +1,4 @@
-import React, { useState, type ReactNode } from 'react'
+import React, { useState, type ReactNode, useMemo } from 'react'
 import { Box, Text, useInput } from 'ink'
 import { TextInput } from '@inkjs/ui'
 
@@ -24,15 +24,15 @@ export default function FilterList<T extends { id: string }>({
 }: Props<T>) {
   const [filter, setFilter] = useState('')
 
-  // Memoize this
-  const filteredItems =
-    filter === ''
+  const filteredItems = useMemo(() => {
+    return filter === ''
       ? items
       : items.filter(
           (item) =>
             item.value.id.toLowerCase().includes(filter.toLowerCase()) ||
             item.label.toLowerCase().includes(filter.toLowerCase()),
         )
+  }, [filter, items])
 
   const [selectedIndex, { increase, decrease, setValue }] = useNumber(0, {
     upperLimit: filteredItems.length - 1,
