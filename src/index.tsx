@@ -58,7 +58,11 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
   )
 
   return (
-    <Box height={height} width={50} flexDirection="column">
+    <Box
+      height={height}
+      width={50}
+      flexDirection='column'
+    >
       <TextInput
         placeholder={'Type to filter'}
         onChange={(newValue) => {
@@ -83,7 +87,10 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
           )
         })
       ) : (
-        <Text color={'gray'} italic>
+        <Text
+          color={'gray'}
+          italic
+        >
           No results
         </Text>
       )}

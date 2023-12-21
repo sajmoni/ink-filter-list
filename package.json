@@ -18,11 +18,7 @@
   "files": [
     "dist/"
   ],
-  "prettier": {
-    "semi": false,
-    "trailingComma": "all",
-    "singleQuote": true
-  },
+  "prettier": "prettier-config-one",
   "keywords": [
     "ink",
     "react",
@@ -48,6 +44,7 @@
     "ink-testing-library": "3.0.0",
     "np": "9.2.0",
     "prettier": "3.1.1",
+    "prettier-config-one": "0.2.0",
     "react": "18.2.0",
     "strip-ansi": "7.1.0",
     "tsconfig-one": "0.0.8",
