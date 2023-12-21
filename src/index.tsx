@@ -25,13 +25,13 @@ export default function FilterList<T extends { id: string }>({
   const [filter, setFilter] = useState('')
 
   // Memoize this
-  // Make it case insensitive
   const filteredItems =
     filter === ''
       ? items
       : items.filter(
           (item) =>
-            item.value.id.includes(filter) || item.label.includes(filter),
+            item.value.id.toLowerCase().includes(filter.toLowerCase()) ||
+            item.label.toLowerCase().includes(filter.toLowerCase()),
         )
 
   const [selectedIndex, { increase, decrease, setValue }] = useNumber(0, {
