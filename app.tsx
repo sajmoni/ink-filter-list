@@ -21,27 +21,27 @@ const run = async () => {
       items={[
         {
           label: 'First',
-          value: 'first',
+          value: { id: 'first' },
         },
         {
           label: 'Second',
-          value: 'second',
+          value: { id: 'second' },
         },
         {
           label: 'Third',
-          value: 'third',
+          value: { id: 'third' },
         },
         {
           label: 'Fourth',
-          value: 'fourth',
+          value: { id: 'fourth' },
         },
         {
           label: 'Fifth',
-          value: 'fifth',
+          value: { id: 'fifth' },
         },
         {
           label: 'Sixth',
-          value: 'sixth',
+          value: { id: 'sixth' },
         },
       ]}
       onSubmit={(item) => {

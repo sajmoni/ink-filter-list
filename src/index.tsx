@@ -1,21 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, type ReactNode } from 'react'
 import { Box, Text, useInput } from 'ink'
 import { TextInput } from '@inkjs/ui'
 
 import useNumber from './useNumber.js'
 
-type Item = {
+type Item<T extends { id: string }> = {
   label: string
-  value: string
+  value: T
 }
 
-type Props = {
-  items: Item[]
-  onSubmit: (item: Item) => void
+type Props<T extends { id: string }> = {
+  items: Item<T>[]
+  // TODO: Optional?
+  onSubmit: (item: Item<T>) => void
   height?: number
+  renderItem?: (item: Item<T>, isSelected: boolean) => ReactNode
 }
 
-const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
+export default function FilterList<T extends { id: string }>({
+  onSubmit,
+  items,
+  height = 5,
+  renderItem,
+}: Props<T>) {
   const [filter, setFilter] = useState('')
 
   // Memoize this
@@ -24,7 +31,8 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
     filter === ''
       ? items
       : items.filter(
-          (item) => item.value.includes(filter) || item.label.includes(filter),
+          (item) =>
+            item.value.id.includes(filter) || item.label.includes(filter),
         )
 
   const [selectedIndex, { increase, decrease, setValue }] = useNumber(0, {
@@ -72,17 +80,15 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
       />
       {itemsToRender.length > 0 ? (
         itemsToRender.map((item) => {
+          const isSelected =
+            filteredItems[selectedIndex]!.value.id === item.value.id
+
+          if (renderItem) {
+            return renderItem(item, isSelected)
+          }
           return (
-            <Box key={item.value}>
-              <Text
-                color={
-                  filteredItems[selectedIndex]!.value === item.value
-                    ? 'blue'
-                    : 'white'
-                }
-              >
-                {item.label}
-              </Text>
+            <Box key={item.value.id}>
+              <Text color={isSelected ? 'blue' : 'white'}>{item.label}</Text>
             </Box>
           )
         })
@@ -97,5 +103,3 @@ const FilterList = ({ onSubmit, items, height = 5 }: Props) => {
     </Box>
   )
 }
-
-export default FilterList

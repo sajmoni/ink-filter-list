@@ -5,6 +5,7 @@ import { test, expect } from 'vitest'
 import timers from 'node:timers/promises'
 
 import FilterList from './src/index.jsx'
+import { Box, Text } from 'ink'
 
 const ARROW_UP = '\u001B[A'
 const ARROW_DOWN = '\u001B[B'
@@ -21,23 +22,23 @@ test('Arrow keys and filtering', async () => {
       items={[
         {
           label: 'First',
-          value: 'first',
+          value: { id: 'first' },
         },
         {
           label: 'Second',
-          value: 'second',
+          value: { id: 'second' },
         },
         {
           label: 'Third',
-          value: 'third',
+          value: { id: 'third' },
         },
         {
           label: 'Fourth',
-          value: 'fourth',
+          value: { id: 'fourth' },
         },
         {
           label: 'Fifth',
-          value: 'fifth',
+          value: { id: 'fifth' },
         },
       ]}
       onSubmit={() => {}}
@@ -71,6 +72,41 @@ test('Arrow keys and filtering', async () => {
   await input(stdin.write, BACKSPACE)
 
   await input(stdin.write, 'does not exist')
+
+  expect(lastFrame()).toMatchSnapshot()
+})
+
+test('renderItem', () => {
+  const { lastFrame } = render(
+    <FilterList
+      height={10}
+      items={[
+        {
+          label: 'First item',
+          value: { id: 'first' },
+        },
+        {
+          label: 'Second item',
+          value: { id: 'second' },
+        },
+        {
+          label: 'Third item',
+          value: { id: 'third' },
+        },
+      ]}
+      renderItem={(item, isSelected) => {
+        const color = isSelected ? 'blue' : 'white'
+
+        return (
+          <Box flexDirection={'column'}>
+            <Text color={color}>{item.value.id}</Text>
+            <Text color={color}>{item.label}</Text>
+          </Box>
+        )
+      }}
+      onSubmit={() => {}}
+    />,
+  )
 
   expect(lastFrame()).toMatchSnapshot()
 })

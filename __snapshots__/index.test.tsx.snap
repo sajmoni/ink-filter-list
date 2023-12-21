@@ -132,3 +132,16 @@ exports[`Arrow keys and filtering 6`] = `
  [2m- [90m (node_modules/react-reconciler/cjs/react-reconciler.development.js:18912:9)[22m[39m
 "
 `;
+
+exports[`renderItem 1`] = `
+"[7mT[27m[2mype to filter[22m
+[34mfirst[39m
+[34mFirst item[39m
+[37msecond[39m
+[37mSecond item[39m
+[37mthird[39m
+[37mThird item[39m
+
+
+"
+`;
