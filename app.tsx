@@ -12,43 +12,39 @@ export const clearConsole = () => {
   )
 }
 
-const run = async () => {
-  clearConsole()
+clearConsole()
 
-  render(
-    <FilterList
-      height={10}
-      items={[
-        {
-          label: 'First',
-          value: { id: 'first' },
-        },
-        {
-          label: 'Second',
-          value: { id: 'second' },
-        },
-        {
-          label: 'Third',
-          value: { id: 'third' },
-        },
-        {
-          label: 'Fourth',
-          value: { id: 'fourth' },
-        },
-        {
-          label: 'Fifth',
-          value: { id: 'fifth' },
-        },
-        {
-          label: 'Sixth',
-          value: { id: 'sixth' },
-        },
-      ]}
-      onSubmit={(item) => {
-        console.log('value', item.value)
-      }}
-    />,
-  )
-}
-
-run()
+render(
+  <FilterList
+    height={10}
+    items={[
+      {
+        label: 'First',
+        value: { id: 'first' },
+      },
+      {
+        label: 'Second',
+        value: { id: 'second' },
+      },
+      {
+        label: 'Third',
+        value: { id: 'third' },
+      },
+      {
+        label: 'Fourth',
+        value: { id: 'fourth' },
+      },
+      {
+        label: 'Fifth',
+        value: { id: 'fifth' },
+      },
+      {
+        label: 'Sixth',
+        value: { id: 'sixth' },
+      },
+    ]}
+    onSubmit={(item) => {
+      console.log('value', item.value)
+    }}
+  />,
+)

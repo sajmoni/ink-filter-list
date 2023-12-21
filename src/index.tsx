@@ -1,8 +1,7 @@
 import React, { useState, type ReactNode, useMemo } from 'react'
 import { Box, Text, useInput } from 'ink'
 import { TextInput } from '@inkjs/ui'
-
-import useNumber from './useNumber.js'
+import { useCounter } from 'react-use'
 
 type Item<T extends { id: string }> = {
   label: string
@@ -34,19 +33,21 @@ export default function FilterList<T extends { id: string }>({
         )
   }, [filter, items])
 
-  const [selectedIndex, { increase, decrease, setValue }] = useNumber(0, {
-    upperLimit: filteredItems.length - 1,
-    lowerLimit: 0,
-    loop: true,
-  })
+  const [selectedIndex, { inc, dec, set }] = useCounter(
+    0,
+    filteredItems.length - 1,
+    0,
+  )
+
+  console.log('file: index.tsx:30 ~ filteredItems:', filteredItems.length)
 
   useInput((_input, key) => {
     if (key.upArrow) {
-      decrease()
+      dec()
     }
 
     if (key.downArrow) {
-      increase()
+      inc()
     }
 
     if (key.return) {
@@ -75,7 +76,7 @@ export default function FilterList<T extends { id: string }>({
       <TextInput
         placeholder={'Type to filter'}
         onChange={(newValue) => {
-          setValue(0)
+          set(0)
           setFilter(newValue)
         }}
       />
