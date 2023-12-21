@@ -11,8 +11,7 @@ type Item<T extends { id: string }> = {
 
 type Props<T extends { id: string }> = {
   items: Item<T>[]
-  // TODO: Optional?
-  onSubmit: (item: Item<T>) => void
+  onSubmit?: (item: Item<T>) => void
   height?: number
   renderItem?: (item: Item<T>, isSelected: boolean) => ReactNode
 }
@@ -51,7 +50,9 @@ export default function FilterList<T extends { id: string }>({
     }
 
     if (key.return) {
-      onSubmit(filteredItems[selectedIndex]!)
+      if (onSubmit) {
+        onSubmit(filteredItems[selectedIndex]!)
+      }
     }
   })
 

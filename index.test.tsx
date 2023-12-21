@@ -41,7 +41,6 @@ test('Arrow keys and filtering', async () => {
           value: { id: 'fifth' },
         },
       ]}
-      onSubmit={() => {}}
     />,
   )
 
@@ -104,7 +103,6 @@ test('renderItem', () => {
           </Box>
         )
       }}
-      onSubmit={() => {}}
     />,
   )
 
